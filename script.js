@@ -2,25 +2,25 @@ function computerPlay () {
     let cpuChoice;
     let randInt = Math.floor(Math.random() * 3);
     if (randInt == 0) {
-        cpuChoice = 'rock';
+        cpuChoice = 'ROCK';
         return cpuChoice;
     }
-    cpuChoice = (randInt > 1) ? cpuChoice = 'scissors' : cpuChoice = 'paper';
+    cpuChoice = (randInt > 1) ? cpuChoice = 'SCISSORS' : cpuChoice = 'PAPER';
     return cpuChoice;
     }
 
-function playerPrompt(){
+/* function playerPrompt(){
     let valid = false;
     let playerInput;
     do{
     playerInput = prompt("Please enter your choice:");
-    playerInput = playerInput.toLowerCase();
+    playerInput = playerInput.toUpperCase();
 
     alert(`You chose ${playerInput}`);
     if (
-        (playerInput === 'rock') ||
-        (playerInput === 'paper') ||
-        (playerInput === 'scissors')
+        (playerInput === 'ROCK') ||
+        (playerInput === 'PAPER') ||
+        (playerInput === 'SCISSORS')
         ){
         valid = true;
     }
@@ -37,6 +37,9 @@ function playerPrompt(){
 
 
 }
+*/
+
+
 
 function displayTally (playerTally, cpuTally){
     const summaryMessage = document.querySelector('#summary');
@@ -70,53 +73,67 @@ return;
 
 
 
-function game(){
+function game(choice){
     let lostMessage = 'You lost this one!';
     let winMessage = 'You win mofucka!';
     let drawMessage = 'This one was a tie.';
 
-    let playerTally = 0;
-    let cpuTally = 0;
 
 
 
-    for (let i = 1; i < 6 ; i++){
-        let playerPlay = playerPrompt();
+
+        let playerPlay = choice;
         let cpuPlay = computerPlay();
+        let playSelection = document.querySelector('#play-selection');
+        let cpuSelection = document.querySelector('#cpu-selection');
+        let resultMessage = document.querySelector('#result-text');
 
-        alert(`Game #${i}!
-            Your choice: ${playerPlay}
-            CPU choice: ${cpuPlay}`);
+        playSelection.textContent = `You chose: ${playerPlay}`;
+        cpuSelection.textContent = `The Computer chooses..... ${cpuPlay}`;
+
+
 
             if (playerPlay === cpuPlay ){
-                alert(drawMessage);
+                resultMessage.textContent = drawMessage;
                 displayTally(playerTally, cpuTally);
                 }
             else if (
-                (playerPlay === 'rock' && cpuPlay === 'scissors') ||
-                (playerPlay === 'scissors' && cpuPlay === 'paper') ||
-                (playerPlay === 'paper' && cpuPlay === 'rock')
+                (playerPlay === 'ROCK' && cpuPlay === 'SCISSORS') ||
+                (playerPlay === 'SCISSORS' && cpuPlay === 'PAPER') ||
+                (playerPlay === 'PAPER' && cpuPlay === 'ROCK')
                 )
                 {
-                    alert(winMessage);
+                    resultMessage.textContent = winMessage;
                     playerTally = ++playerTally;
                     displayTally(playerTally, cpuTally);
                 }
             else if (
-                (cpuPlay === 'rock' && playerPlay === 'scissors') ||
-                (cpuPlay === 'scissors' && playerPlay === 'paper') ||
-                (cpuPlay === 'paper' && playerPlay === 'rock')
+                (cpuPlay === 'ROCK' && playerPlay === 'SCISSORS') ||
+                (cpuPlay === 'SCISSORS' && playerPlay === 'PAPER') ||
+                (cpuPlay === 'PAPER' && playerPlay === 'ROCK')
                 )
                 {
-                    alert(lostMessage);
+                    resultMessage.textContent = lostMessage;
                     cpuTally = ++cpuTally;
                     displayTally(playerTally, cpuTally);
                 }
 
-        }
-    getwhoWon(playerTally, cpuTally);
+    if (playerTally === winThreshold || cpuTally === winThreshold){
+        getwhoWon(playerTally, cpuTally);
+    }
+
 
 
 }
-game();
 
+const winThreshold = 5;
+let playerTally = 0;
+let cpuTally = 0;
+let choice;
+const buttons = document.querySelectorAll('.btn-ctn button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        choice = button.id.toUpperCase();
+        game(choice);
+    })
+})
