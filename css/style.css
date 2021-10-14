@@ -1,1 +1,41 @@
-style.css
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap');
+
+* {
+    background-color: #777;
+    font-family: 'Merriweather', serif;
+    margin-left: 100px;
+}
+
+.title-txt{
+    color: #1A8;
+}
+
+.play-ctn {
+    color: darkred;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-ctn{
+    display: flex;
+    max-width: 500px;
+    justify-content: space-between;
+    background-color: yellowgreen;
+    padding: 30px 0px;
+    border-radius: 20px;
+}
+
+.btn-ctn button{
+    background-color: #1A5;
+    border-radius: 5%;
+}
+
+.confirm-ctn{
+    color: darkgreen;
+}
+
+.result-ctn{
+    color: darkblue;
+}
+
+

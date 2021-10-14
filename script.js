@@ -9,37 +9,6 @@ function computerPlay () {
     return cpuChoice;
     }
 
-/* function playerPrompt(){
-    let valid = false;
-    let playerInput;
-    do{
-    playerInput = prompt("Please enter your choice:");
-    playerInput = playerInput.toUpperCase();
-
-    alert(`You chose ${playerInput}`);
-    if (
-        (playerInput === 'ROCK') ||
-        (playerInput === 'PAPER') ||
-        (playerInput === 'SCISSORS')
-        ){
-        valid = true;
-    }
-    else {
-        alert('That is not a valid choice!');
-    }
-
-    }
-
-    while (!valid);
-
-
-    return playerInput;
-
-
-}
-*/
-
-
 
 function displayTally (playerTally, cpuTally){
     const summaryMessage = document.querySelector('#summary');
